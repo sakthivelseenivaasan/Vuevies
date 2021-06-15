@@ -43,6 +43,7 @@
   </template>
 
 <script>
+  import { mapActions } from 'vuex'
 export default {
   name: 'Login',
 data(){
@@ -53,11 +54,18 @@ data(){
         }
         }
 },
+    created () {
+        // reset login status
+        this.logout();
+    },
   methods:{
+      ...mapActions('users', ['login', 'logout']),
        onSubmit() {
-
-        alert(JSON.stringify(this.form))
-        this.$router.push({ name: 'movie' })
+         alert(JSON.stringify(this.form))
+        let email = this.form.email;
+        let password = this.form.password;
+        this.login({ email, password })
+       // this.$router.push({ name: 'movie' })
       }
 },
 }
