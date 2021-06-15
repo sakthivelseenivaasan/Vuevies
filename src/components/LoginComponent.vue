@@ -1,5 +1,5 @@
 <template>
- <b-form @submit="onSubmit">
+ <b-form @submit.prevent="onSubmit">
       <b-form-group
         id="input-group-1"
         label="Email address:"
@@ -39,8 +39,7 @@ data(){
         }
 },
   methods:{
-       onSubmit(event) {
-        event.preventDefault()
+       onSubmit() {
         alert(JSON.stringify(this.form))
       }
 },
