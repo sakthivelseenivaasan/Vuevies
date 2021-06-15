@@ -1,12 +1,22 @@
 <template>
 <b-row align-h="center">
-<b-col col lg="3">
+<b-col col lg="3" style="background-color: #ccc; padding: 10px 20px">
+<b-row align-h="center">
+<b-col col md="6" lg="6">
+  <b-media>
+    <template #aside>
+      <img src="../assets/CB-Logo.png" width="100%" class="m-10"  alt="Media Aside">
+    </template>
+  </b-media>
+</b-col>
+</b-row>
  <b-form @submit.prevent="onSubmit">
       <b-form-group
         id="email-group"
         label="Email address:"
         label-for="email"
         style="text-align:left"
+        class="mb-3"
       >
         <b-form-input
           id="email"
@@ -17,7 +27,7 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="password-group" label="Password:" label-for="input-2" style="text-align:left">
+      <b-form-group id="password-group" label="Password:" label-for="input-2" style="text-align:left" class="mb-3">
         <b-form-input
           id="password"
           v-model="form.password"

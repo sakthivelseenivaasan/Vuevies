@@ -5,6 +5,7 @@ import movieDetail from "./components/MovieList.vue";
 import { createProvider } from "./vue-apollo";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import vueRouter from "vue-router";
+import "./main.css";
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -14,8 +15,10 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(vueRouter);
 Vue.config.productionTip = false;
-const routes = [{ path: "/login", component: loginComponent },
-{ path: "/movie", component: movieDetail,name:"movie" }];
+const routes = [
+  { path: "/login", component: loginComponent },
+  { path: "/movie", component: movieDetail, name: "movie" },
+];
 const router = new vueRouter({
   routes,
 });
