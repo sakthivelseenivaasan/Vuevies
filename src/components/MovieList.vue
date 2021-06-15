@@ -1,63 +1,68 @@
 <template>
 <div>
+<h1 style="padding:20px; fontSize: 30px">Movie List</h1>
+<b-container>
   <b-card-group columns>
-    <b-card
-      title="Card title that wraps to a new line"
-      img-src="https://placekitten.com/g/400/450"
-      img-alt="Image"
-      img-top
-    >
+  <b-row align-h="start">
+  <b-col col lg="3" class="mb-5">
+    <b-card no-body>
+    <b-card-img src="https://placekitten.com/480/210" alt="Image" bottom></b-card-img>
+    <b-card-body>
       <b-card-text>
-        This is a wider card with supporting text below as a natural lead-in to additional content.
-        This content is a little bit longer.
+        <p style="color:#999797; fontSize: 12px; textAlign:left">Year: 2021</p>
+        <h3 style="textAlign:left; fontSize: 20px">Movie Title</h3>
       </b-card-text>
+    </b-card-body>
     </b-card>
-
-    <b-card header="Quote">
-      <blockquote class="blockquote mb-0">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-        <footer class="blockquote-footer">
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </footer>
-      </blockquote>
-    </b-card>
-
-    <b-card title="Title" img-src="https://placekitten.com/500/350" img-alt="Image" img-top>
+  </b-col>
+  <b-col col lg="3">
+    <b-card no-body>
+    <b-card-img src="https://placekitten.com/480/210" alt="Image" bottom></b-card-img>
+    <b-card-body>
       <b-card-text>
-        This card has supporting text below as a natural lead-in to additional content.
+        <p style="color:#999797; fontSize: 12px; textAlign:left">Year: 2021</p>
+        <h3 style="textAlign:left; fontSize: 20px">Movie Title</h3>
       </b-card-text>
-      <b-card-text class="small text-muted">Last updated 3 mins ago</b-card-text>
+    </b-card-body>
     </b-card>
-
-    <b-card bg-variant="primary" text-variant="white">
-      <blockquote class="card-blockquote">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-        <footer>
-          <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-        </footer>
-      </blockquote>
-    </b-card>
-
-    <b-card>
-      <b-card-title>Title</b-card-title>
+  </b-col>
+  <b-col col lg="3">
+    <b-card no-body>
+    <b-card-img src="https://placekitten.com/480/210" alt="Image" bottom></b-card-img>
+    <b-card-body>
       <b-card-text>
-        This card has supporting text below as a natural lead-in to additional content.
+        <p style="color:#999797; fontSize: 12px; textAlign:left">Year: 2021</p>
+        <h3 style="textAlign:left; fontSize: 20px">Movie Title</h3>
       </b-card-text>
-      <b-card-text class="small text-muted">Last updated 3 mins ago</b-card-text>
+    </b-card-body>
     </b-card>
-
-    <b-card img-src="https://picsum.photos/400/400/?image=41" img-alt="Image" overlay></b-card>
-
-    <b-card img-src="https://picsum.photos/400/200/?image=41" img-alt="Image" img-top>
+  </b-col>
+  <b-col col lg="3">
+    <b-card no-body>
+    <b-card-img src="https://placekitten.com/480/210" alt="Image" bottom></b-card-img>
+    <b-card-body>
       <b-card-text>
-        This is a wider card with supporting text below as a natural lead-in to additional content.
-        This card has even longer content than the first.
+        <p style="color:#999797; fontSize: 12px; textAlign:left">Year: 2021</p>
+        <h3 style="textAlign:left; fontSize: 20px">Movie Title</h3>
       </b-card-text>
-      <template #footer>
-        <small class="text-muted">Footer Text</small>
-      </template>
+    </b-card-body>
     </b-card>
+  </b-col>
+  <b-col col lg="3">
+    <b-card no-body>
+    <b-card-img src="https://placekitten.com/480/210" alt="Image" bottom></b-card-img>
+    <b-card-body>
+      <b-card-text>
+        <p style="color:#999797; fontSize: 12px; textAlign:left">Year: 2021</p>
+        <h3 style="textAlign:left; fontSize: 20px">Movie Title</h3>
+      </b-card-text>
+    </b-card-body>
+    </b-card>
+  </b-col>
+  
+  </b-row>
   </b-card-group>
+  </b-container>
 </div>
 </template>
 <script>
