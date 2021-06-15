@@ -1,13 +1,15 @@
 <template>
+<b-row align-h="center">
+<b-col col lg="3">
  <b-form @submit.prevent="onSubmit">
       <b-form-group
-        id="input-group-1"
+        id="email-group"
         label="Email address:"
-        label-for="input-1"
-        description="We'll never share your email with anyone else."
+        label-for="email"
+        style="text-align:left"
       >
         <b-form-input
-          id="input-1"
+          id="email"
           v-model="form.email"
           type="email"
           placeholder="Enter email"
@@ -15,16 +17,19 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="Enter Password:" label-for="input-2">
+      <b-form-group id="password-group" label="Password:" label-for="input-2" style="text-align:left">
         <b-form-input
-          id="input-2"
+          id="password"
           v-model="form.password"
+          type="password"
           placeholder="Enter password"
           required
         ></b-form-input>
       </b-form-group>
       <b-button type="submit" variant="primary">Submit</b-button>
     </b-form>
+    </b-col>
+    </b-row>
   </template>
 
 <script>
