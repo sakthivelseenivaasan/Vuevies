@@ -40,7 +40,9 @@ data(){
 },
   methods:{
        onSubmit() {
+
         alert(JSON.stringify(this.form))
+        this.$router.push({ name: 'movie' })
       }
 },
 }
