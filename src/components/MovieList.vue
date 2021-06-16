@@ -1,6 +1,29 @@
 <template>
 <div>
-  <div><h1>{{this.$store.state.users.user}}</h1></div>
+  <div>
+  <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-container>
+    <b-navbar-brand href="#">NavBar</b-navbar-brand>
+
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+    <b-collapse id="nav-collapse" is-nav style="flexGrow: 0;">
+      
+
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto">
+       
+
+        <b-nav-item-dropdown :text="this.$store.state.users.user" right>
+          <b-dropdown-item href="#">Profile</b-dropdown-item>
+          <b-dropdown-item href="#">LogOut</b-dropdown-item>
+          
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
+    </b-collapse>
+    </b-container>
+  </b-navbar>
+</div>
 <h1 style="padding:20px; fontSize: 30px">Movie List</h1>
 <b-container>
   <b-card-group columns>

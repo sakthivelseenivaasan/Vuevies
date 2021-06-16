@@ -4,3 +4,18 @@ body{
 .m-10{
     margin: 10px;
 }
+.btn-primary, .btn-primary:hover {
+        color: #fff;
+        background-color: #1d66a2 !important;
+        border-color: #1d68a2 !important;
+        
+    }
+    input{
+        border-radius: 0px !important;
+        font-size: .9rem !important;
+    }
+    input:focus{
+        border: 1px solid #ced4da !important;
+        box-shadow: none !important;
+        
+     }
