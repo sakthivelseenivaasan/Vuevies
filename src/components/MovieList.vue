@@ -6,17 +6,26 @@
   <b-card-group columns>
   <b-row align-h="start">
   <b-col col lg="3" class="mb-5" v-for="data in filter_movie_data" v-bind:key="data.node.id">
-    <b-card no-body>
+    <b-card no-body @click="showMovieDetail(data.node)">
     <b-card-img :src="data.node.images.posters[0].image" alt="Image" bottom></b-card-img>
     <b-card-body>
       <b-card-text>
         <p style="color:#999797; fontSize: 12px; textAlign:left">Year: {{data.node.releaseDate | DateFormat}}</p>
-        <h3 style="textAlign:left; fontSize: 20px">{{data.node.title}}</h3>
+        <h3 style="textAlign:left; fontSize: 20px">{{data.node.title}}{{data.show}}</h3>
       </b-card-text>
     </b-card-body>
     </b-card>
   </b-col>
   </b-row>
+   <b-modal id="bv-modal-example" hide-footer>
+    <template #modal-title>
+      <code>{{movies_detail.title}}</code>
+    </template>
+    <div class="d-block text-center" >
+      <table><tr v-for="(value,key) in movies_detail" v-bind:key='value'><td v-if="typeof(value)!== 'object'">{{key}}</td><td v-if="typeof(value)!== 'object'">{{value}}</td></tr></table>
+    </div>
+    <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button>
+  </b-modal>
   </b-card-group>
   </b-container>
 </div>
@@ -28,7 +37,8 @@ export default {
   name: 'MovieDetail',
 data(){
     return{
-        movies:''
+        movies:'',
+        movies_detail:{}
     }
 },
   apollo:{
@@ -61,16 +71,30 @@ data(){
   },
 computed:{
   filter_movie_data(){
-    return this.movies !== undefined ? this.movies.search.edges:[];
+    var movie_list = this.movies !== undefined ? this.movies.search.edges:[];
+    if(movie_list != undefined){
+      movie_list = movie_list.map(v => 
+      //console.log('sxxs',v.show)
+      Object.assign(v, {show:v.show == undefined? false : v.show}))
+    }
+    return movie_list
   } 
 },
 created(){
-if(this.$store.state.users.user.length==0){
+if(this.$store.state.users.user.length==0 && localStorage.getItem('user').length == 0){
   this.logout();
+}else if(this.$store.state.users.user.length==0 && localStorage.getItem('user').length>0){
+  //console.log(localStorage.getItem('user'))
+  let email = localStorage.getItem('user')
+  this.localStorageUser({email});
 }
 },
   methods:{
-      ...mapActions('users', ['login', 'logout']),
+    ...mapActions('users', ['logout','localStorageUser']),
+    showMovieDetail(data){
+      this.movies_detail = data;
+      this.$bvModal.show('bv-modal-example')
+    }
 },
 }
 </script>

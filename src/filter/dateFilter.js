@@ -1,6 +1,5 @@
 import Vue from "vue";
     Vue.filter('DateFormat', function (date) {
-        console.log(date)
         if (!date) return ''
         date = new Date(date)
         var ms = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
