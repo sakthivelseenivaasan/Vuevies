@@ -48,7 +48,7 @@
 <script>
   import { mapActions } from 'vuex'
 export default {
-  name: 'Login',
+  name: 'login',
 data(){
     return{
         form:{
