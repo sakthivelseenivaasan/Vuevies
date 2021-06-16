@@ -61,7 +61,7 @@ data(){
   methods:{
       ...mapActions('users', ['login', 'logout']),
        onSubmit() {
-         alert(JSON.stringify(this.form))
+         alert(JSON.stringify(this.form.email))
         let email = this.form.email;
         let password = this.form.password;
         this.login({ email, password })

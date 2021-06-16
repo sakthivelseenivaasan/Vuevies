@@ -12,12 +12,13 @@ const actions = {
     },
     logout({ commit }) {
         commit('logout');
+        router.push('/login');
     }
 };
 
 const mutations = {
     loginRequest(state, user) {
-        state.user = user;
+        state.user = user.email;
     },
     logout(state) {
         state.user = null;
