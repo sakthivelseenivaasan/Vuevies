@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import loginComponent from "./components/LoginComponent.vue";
+import loginComponent from "./components/Login.vue";
 import movieDetail from "./components/MovieList.vue";
 
 

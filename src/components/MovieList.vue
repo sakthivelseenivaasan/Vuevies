@@ -15,8 +15,8 @@
        
 
         <b-nav-item-dropdown :text="this.$store.state.users.user" right>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">LogOut</b-dropdown-item>
+          <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
+          <b-dropdown-item href="#" @click="logout()">LogOut</b-dropdown-item>
           
         </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -44,9 +44,10 @@
     <template #modal-title>
       <code>{{movies_detail.title}}</code>
     </template>
-    <div class="d-block text-center" >
+    <MovieDetail v-if="isShow" :movies_detail="movies_detail"></MovieDetail>
+    <!-- <div class="d-block text-center" >
       <table><tr v-for="(value,key) in movies_detail" v-bind:key='value'><td v-if="typeof(value)!== 'object'">{{key}}</td><td v-if="typeof(value)!== 'object'">{{value}}</td></tr></table>
-    </div>
+    </div> -->
     <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button>
   </b-modal>
   </b-card-group>
@@ -55,15 +56,18 @@
 </template>
 <script>
 import gql from 'graphql-tag'
+import MovieDetail from './MovieDetail.vue'
 import { mapActions } from 'vuex'
 export default {
-  name: 'MovieDetail',
-data(){
-    return{
-        movies:'',
-        movies_detail:{}
-    }
-},
+  name: 'MovieList',
+  components:{MovieDetail},
+  data(){
+      return{
+          movies:'',
+          movies_detail:{},
+          isShow:false,
+      }
+  },
   apollo:{
     movies:{
       query:  gql`query {
@@ -116,6 +120,7 @@ if(this.$store.state.users.user.length==0 && localStorage.getItem('user').length
     ...mapActions('users', ['logout','localStorageUser']),
     showMovieDetail(data){
       this.movies_detail = data;
+      this.isShow = true;
       this.$bvModal.show('bv-modal-example')
     }
 },
