@@ -1,8 +1,10 @@
 <template>
+<div style="position: relative;">
+<div style="height:300px; backgroundColor: #1aebb7;"></div>
+<b-row align-h="center" style="width: 100%; position: absolute; top: 40%">
+<b-col cols="6" lg="3" md="4" sm="6" style="background-color: #00000024; padding: 10px 20px">
 <b-row align-h="center">
-<b-col col lg="3" style="background-color: #ccc; padding: 10px 20px">
-<b-row align-h="center">
-<b-col col md="6" lg="6">
+<b-col cols="5" md="6" lg="6" sm="5">
   <b-media>
     <template #aside>
       <img src="../assets/CB-Logo.png" width="100%" class="m-10"  alt="Media Aside">
@@ -36,10 +38,11 @@
           required
         ></b-form-input>
       </b-form-group>
-      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="submit" variant="primary" style="marginTop: 15px;">Submit</b-button>
     </b-form>
     </b-col>
     </b-row>
+</div>
   </template>
 
 <script>
