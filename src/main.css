@@ -1,4 +1,4 @@
-body{
+body, #app  {
     font-family: 'Open Sans', sans-serif !important;
 }
 .m-10{
@@ -19,3 +19,28 @@ body{
         box-shadow: none !important;
         
      }
+td{
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+}
+th{
+    width: 120px;
+    text-align: left !important;
+    padding: 20px;
+}
+nav.bg-info {
+    background-color: #1D66A2 !important;
+}
+.cur-pointer{
+    cursor: pointer;
+}
+ul.dropdown-menu.dropdown-menu-right.show, 
+ul.dropdown-menu.dropdown-menu-right.show li a, 
+ul.dropdown-menu.dropdown-menu-right.show li a:hover{
+    top: 47px; border-radius: 0px; background: #1d66a2; color: #fff;
+}
+.navbar-nav li a.nav-link.dropdown-toggle,
+.navbar-nav li a.nav-link.dropdown-toggle:hover{
+    color: #fff
+}
