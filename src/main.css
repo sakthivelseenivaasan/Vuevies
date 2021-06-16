@@ -19,3 +19,13 @@ body{
         box-shadow: none !important;
         
      }
+td{
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+}
+th{
+    width: 120px;
+    text-align: left !important;
+    padding: 20px;
+}

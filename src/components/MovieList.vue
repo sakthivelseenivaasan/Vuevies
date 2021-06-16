@@ -40,7 +40,7 @@
     </b-card>
   </b-col>
   </b-row>
-   <b-modal id="bv-modal-example" hide-footer>
+   <b-modal id="bv-modal-example" size="lg" hide-footer>
     <template #modal-title>
       <code>{{movies_detail.title}}</code>
     </template>
@@ -48,7 +48,7 @@
     <!-- <div class="d-block text-center" >
       <table><tr v-for="(value,key) in movies_detail" v-bind:key='value'><td v-if="typeof(value)!== 'object'">{{key}}</td><td v-if="typeof(value)!== 'object'">{{value}}</td></tr></table>
     </div> -->
-    <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button>
+    <!-- <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button> -->
   </b-modal>
   </b-card-group>
   </b-container>
