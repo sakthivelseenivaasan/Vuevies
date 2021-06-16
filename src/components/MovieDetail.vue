@@ -8,23 +8,23 @@
         </b-col>
         <b-col cols="8" style="float:left">
             <table>
-                <tr>
+                <tr v-if="movies_detail.title !== ''">
                     <th style="paddingTop: 0px;">Title</th>
                     <td style="paddingTop: 0px;">{{movies_detail.title}}</td>
                 </tr>
-                <tr>
+                <tr v-if="movies_detail.overview !== ''">
                     <th>Description</th>
                     <td>{{movies_detail.overview}}</td>
                 </tr>
-                <tr>
+                <tr v-if="movies_detail.releaseDate !== ''">
                     <th>Date</th>
                     <td>{{movies_detail.releaseDate}}</td>
                 </tr>
-                <tr>
+                <tr v-if="movies_detail.tagline !== ''">
                     <th>Tags</th>
                     <td>{{movies_detail.tagline}}</td>
                 </tr>
-                <tr>
+                <tr v-if="movies_detail.__typename !== ''">
                     <th>Type</th>
                     <td>{{movies_detail.__typename}}</td>
                 </tr>

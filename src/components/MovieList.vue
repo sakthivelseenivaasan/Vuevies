@@ -3,7 +3,7 @@
   <div>
   <b-navbar toggleable="lg" type="dark" variant="info">
     <b-container>
-    <b-navbar-brand href="#">NavBar</b-navbar-brand>
+    <b-navbar-brand href="#">Castle Branch</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -24,11 +24,11 @@
     </b-container>
   </b-navbar>
 </div>
-<h1 style="padding:20px; fontSize: 30px">Movie List</h1>
+<h1 style="padding:20px; fontSize: 30px;color: #D63384;">Movie List</h1>
 <b-container>
   <b-card-group columns>
   <b-row align-h="start">
-  <b-col col lg="3" class="mb-5" v-for="data in filter_movie_data" v-bind:key="data.node.id">
+  <b-col cols="6" lg="3" sm="6" md="3" class="mb-5 cur-pointer" v-for="data in filter_movie_data" v-bind:key="data.node.id">
     <b-card no-body @click="showMovieDetail(data.node)">
     <b-card-img :src="data.node.images.posters[0].image" alt="Image" bottom></b-card-img>
     <b-card-body>
