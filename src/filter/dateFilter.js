@@ -3,6 +3,6 @@ import Vue from "vue";
         if (!date) return ''
         date = new Date(date)
         var ms = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        return date.getDate() + ' ' + ms[date.getMonth()] + ' ' + date.getFullYear();
+        return `${date.getDate()} ${ms[date.getMonth()]} ${date.getFullYear()}`;
       })
 
