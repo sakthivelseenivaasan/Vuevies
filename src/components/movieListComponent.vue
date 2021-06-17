@@ -15,8 +15,8 @@
        
 
         <b-nav-item-dropdown :text="this.$store.state.users.user" right>
-          <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
-          <b-dropdown-item href="#" @click="logout()">LogOut</b-dropdown-item>
+          <b-dropdown-item href="#" @click="userPage()">User Dashboard</b-dropdown-item>
+          <b-dropdown-item href="#" @click="logout()"><b-icon icon="power" aria-hidden="true"></b-icon>LogOut</b-dropdown-item>
           
         </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -160,9 +160,12 @@ if(this.$store.state.users.user.length==0 && localStorage.getItem('user').length
               }
             }
           }
-        }`,variables: {term: serachItem} }).then((response) => {
+        }`,variables: {term: serachItem} ,client:'movieServer'}).then((response) => {
           self.movies =  response.data.movies.search.edges;
       });
+    },
+    userPage(){
+      this.$router.push('/user');
     }
   }
 }

@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import loginComponent from "./components/loginComponent.vue";
+import signupComponent from "./components/signUpComponent.vue";
 import movieListComponent from "./components/movieListComponent.vue";
+import userDashboardComponent from "./components/userDashboadComponent.vue";
 
 
 const originalPush = Router.prototype.push;
@@ -15,7 +17,9 @@ export const router = new Router({
   mode: 'history',
   routes: [
     { path: "/login", component: loginComponent },
+    { path: "/signup", component: signupComponent },
     { path: "/movie", component: movieListComponent, name: "movie" },
+    { path: "/user", component: userDashboardComponent, name: "userDashboard" },
     { path: '*', redirect: '/login' }
   ]
 });

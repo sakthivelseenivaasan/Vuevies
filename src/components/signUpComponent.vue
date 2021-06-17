@@ -13,14 +13,29 @@
 </b-col>
 </b-row>
  <b-form @submit.prevent="onSubmit">
+        <b-form-group
+        id="name-group"
+        label="Name:"
+        label-for="name"
+        style="text-align:left"
+        class="mb-3"
+      >
+    <b-form-input
+          id="name"
+          v-model="form.fullName"
+          type="text"
+          placeholder="Enter name"
+          required
+        ></b-form-input>
+      </b-form-group>
       <b-form-group
         id="email-group"
-        label="Email address:"
+        label="Email:"
         label-for="email"
         style="text-align:left"
         class="mb-3"
       >
-        <b-form-input
+    <b-form-input
           id="email"
           v-model="form.email"
           type="email"
@@ -37,9 +52,18 @@
           placeholder="Enter password"
           required
         ></b-form-input>
+        </b-form-group>
+        <b-form-group id="password-group" label="Re-Password:" label-for="input-3" style="text-align:left" class="mb-3">
+        <b-form-input
+          id="repassword"
+          v-model="form.rePassowrd"
+          type="password"
+          placeholder="Enter Re-Password"
+          required
+        ></b-form-input>
       </b-form-group>
-      <b-button type="submit" variant="primary" style="marginTop: 15px;">Login</b-button>
-      <b-button @click="$router.push('/signup')" variant="primary" style="marginTop: 15px;margin-left: 109px;">SignUp</b-button>
+      <b-button type="submit" variant="primary" style="marginTop: 15px;marginRight: 62px;">Sign Up</b-button>
+      <a  href="/#login"><b-icon-arrow-left></b-icon-arrow-left> Back To Login</a>
     </b-form>
     </b-col>
     </b-row>
@@ -47,46 +71,37 @@
   </template>
 
 <script>
-  import { mapActions } from 'vuex'
-  import { loginRequest } from '../graphQl/mutation'
+import { signUpRequest } from '../graphQl/mutation'
 export default {
-  name: 'login',
+  name: 'signUp',
 data(){
     return{
         form:{
             email:'',
-            password:''
+            password:'',
+            rePassword:'',
+            fullName:''
         }
         }
 },
-    created () {
-        // reset login status
-        this.logout();
-    },
   methods:{
-      ...mapActions('users', ['login', 'logout']),
        onSubmit() {
-         alert(JSON.stringify(this.form.email))
-        let email = this.form.email;
-        let password = this.form.password;
-        this.login({ email, password })
         this.$apollo.mutate({
-            mutation: loginRequest,
+            mutation: signUpRequest,
             client:'localServer',
             variables: {
               email:this.form.email,
-              password:this.form.password
+              password:this.form.password,
+              rePassword:this.form.rePassword,
+              fullName:this.form.fullName,
+              role:'USER'
             }
           }).then((result) => {
-            const token = result.data.login.token
-            this.saveUserData(this.form.email, token)
+             console.log('useradded',result);
+             alert("user addes")
           }).catch((error) => {
             alert(error)
           })
-      },
-      saveUserData(email,token){
-        localStorage.setItem("movie_user", email)
-        localStorage.setItem("user_apolo_token", token)
       }
 },
 }
