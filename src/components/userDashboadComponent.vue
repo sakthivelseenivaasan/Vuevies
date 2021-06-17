@@ -24,9 +24,10 @@
     </b-container>
   </b-navbar>
 </div>
-<h1 style="padding:20px; fontSize: 30px;color: #D63384; text-align:center;">User List</h1>
 
 <b-container>
+<h1 class="contentPageH1">User List</h1>
+<hr/>
   <b-row align-h="between">
     <b-col lg="4" class="my-1">
         <b-form-group
