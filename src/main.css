@@ -61,3 +61,16 @@ ul.dropdown-menu.dropdown-menu-right.show li a:hover{
     padding-left: 0px;
     padding-bottom: 0px;
 }
+.box-shadow:hover{
+    box-shadow: 0 2px 5px 0 rgb(55 161 255 / 26%), 0 4px 12px 0 rgb(121 155 254 / 25%);
+}
+.hoverSale{
+    transition: 0.5s linear;
+}
+.hoverSale:hover{
+    transform: scale(1.15);
+    transition: 0.5s linear;
+}
+.listImgDiv{
+    overflow: hidden;
+}
