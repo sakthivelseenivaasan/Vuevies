@@ -44,3 +44,12 @@ ul.dropdown-menu.dropdown-menu-right.show li a:hover{
 .navbar-nav li a.nav-link.dropdown-toggle:hover{
     color: #fff
 }
+.flex{
+    display: flex;
+}
+.justify-content-end{
+    justify-content: flex-end;
+}
+.align-item-center{
+    align-items: center;
+}

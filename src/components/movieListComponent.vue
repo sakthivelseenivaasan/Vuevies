@@ -15,8 +15,8 @@
        
 
         <b-nav-item-dropdown :text="this.$store.state.users.user" right>
-          <b-dropdown-item href="#" @click="userPage()">User Dashboard</b-dropdown-item>
-          <b-dropdown-item href="#" @click="logout()"><b-icon icon="power" aria-hidden="true"></b-icon>LogOut</b-dropdown-item>
+          <b-dropdown-item href="#" @click="userPage()"><b-icon icon="person" aria-hidden="true"></b-icon> User Dashboard</b-dropdown-item>
+          <b-dropdown-item href="#" @click="logout()"><b-icon icon="power" aria-hidden="true"></b-icon> LogOut</b-dropdown-item>
           
         </b-nav-item-dropdown>
       </b-navbar-nav>

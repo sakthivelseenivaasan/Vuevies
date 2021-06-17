@@ -52,8 +52,8 @@
           </b-input-group>
         </b-form-group>
       </b-col>
-      <b-col lg="4" class="my-1">
-      <b-button variant="success" @click="showUserForm()"><b-icon icon="person-plus"></b-icon> Add</b-button>
+      <b-col lg="4" class="my-1 flex justify-content-end align-item-center">
+      <b-button class="flex" variant="success" @click="showUserForm()"><b-icon icon="person-plus"></b-icon> Add</b-button>
       </b-col>
   </b-row>
 <b-table small :fields="fields" :items="items" responsive="sm" @filtered="onFiltered">
