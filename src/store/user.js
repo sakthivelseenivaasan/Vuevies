@@ -1,32 +1,31 @@
 import { router } from '../router';
 
 const state = {
-    user:""
+   userData:{}
 }
 
 const actions = {
-    login({commit }, { email, password }) {
-        localStorage.setItem("user",email);
-        if(password.length)
-        commit('loginRequest', { email });
+    login({commit }, user) {
+        commit('loginRequest', user );
         router.push('/movie');
     },
     logout({ commit }) {
-        localStorage.removeItem('user');
+        localStorage.removeItem('movie_user');
+        localStorage.removeItem('user_apolo_token');
         commit('logout');
         router.push('/login');
     },
-    localStorageUser({commit},{email}){
-        commit('loginRequest', { email });
+    localStorageUser({commit},user){
+        commit('loginRequest', user );
     }
 };
 
 const mutations = {
     loginRequest(state, user) {
-        state.user = user.email;
+        state.userData = user;
     },
     logout(state) {
-        state.user = null;
+        state.userData = {};
     }
 };
 

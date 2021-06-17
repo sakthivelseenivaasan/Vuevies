@@ -56,7 +56,7 @@
         <b-form-group id="password-group" label="Re-Password:" label-for="input-3" style="text-align:left" class="mb-3">
         <b-form-input
           id="repassword"
-          v-model="form.rePassowrd"
+          v-model="form.rePassword"
           type="password"
           placeholder="Enter Re-Password"
           required
@@ -71,18 +71,18 @@
   </template>
 
 <script>
-import { signUpRequest } from '../graphQl/mutation'
+import { signUpRequest } from '../graphQl/mutation';
 export default {
   name: 'signUp',
-data(){
-    return{
-        form:{
-            email:'',
-            password:'',
-            rePassword:'',
-            fullName:''
-        }
-        }
+    data(){
+        return{
+            form:{
+                email:'',
+                password:'',
+                rePassword:'',
+                fullName:''
+            }
+            }
 },
   methods:{
        onSubmit() {
@@ -97,8 +97,13 @@ data(){
               role:'USER'
             }
           }).then((result) => {
-             console.log('useradded',result);
-             alert("user addes")
+              if(result.data.signup.success == true)
+                alert("User SignUp Successfully! Please Login.")
+                 this.form.email="",
+                 this.form.password="",
+                 this.form.rePassword="",
+                 this.form.fullName=""
+             
           }).catch((error) => {
             alert(error)
           })

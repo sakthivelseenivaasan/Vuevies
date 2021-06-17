@@ -66,9 +66,6 @@ data(){
   methods:{
       ...mapActions('users', ['login', 'logout']),
        onSubmit() {
-        let email = this.form.email;
-        let password = this.form.password;
-        this.login({ email, password })
         this.$apollo.mutate({
             mutation: loginRequest,
             client:'localServer',
@@ -77,14 +74,22 @@ data(){
               password:this.form.password
             }
           }).then((result) => {
+            if(result.data.login.token == null){
+              alert(result.data.login.message);
+            }else{
+              alert(result.data.login.message);
             const token = result.data.login.token
-            this.saveUserData(this.form.email, token)
+            let user = result.data.login.user
+            this.login(user);
+            this.saveUserData(user, token)
+            }
+
           }).catch((error) => {
             alert(error)
           })
       },
-      saveUserData(email,token){
-        localStorage.setItem("movie_user", email)
+      saveUserData(user,token){
+        localStorage.setItem("movie_user", JSON.stringify(user))
         localStorage.setItem("user_apolo_token", token)
       }
 },

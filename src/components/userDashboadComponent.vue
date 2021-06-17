@@ -1,29 +1,6 @@
 <template>
 <div>
-  <div>
-  <b-navbar toggleable="lg" type="dark" variant="info">
-    <b-container>
-    <b-navbar-brand href="#">Castle Branch</b-navbar-brand>
-
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-    <b-collapse id="nav-collapse" is-nav style="flexGrow: 0;">
-      
-
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
-       
-
-        <b-nav-item-dropdown :text="$store.state.users" right>
-          <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
-          <b-dropdown-item href="#" @click="logout()">LogOut</b-dropdown-item>
-          
-        </b-nav-item-dropdown>
-      </b-navbar-nav>
-    </b-collapse>
-    </b-container>
-  </b-navbar>
-</div>
+<navbarComponent></navbarComponent>
 <h1 style="padding:20px; fontSize: 30px;color: #D63384;">User List</h1>
 <div  @click="showUserForm()"><b-avatar variant="danger" icon="person-plus-fill" class="mr-3"></b-avatar></div>
 <b-table small :fields="fields" :items="items" responsive="sm">
@@ -59,6 +36,8 @@
           placeholder="Enter User name"
           required
         ></b-form-input>
+      </b-form-group>
+
       <b-form-group
         id="input-group-1"
         label="User Email:"
@@ -73,7 +52,16 @@
         ></b-form-input>
       </b-form-group>
 
-
+     <b-form-group
+        label="User Role:" v-slot="{ ariaDescribedby }"
+      >
+      <b-form-radio-group
+        id="radio-group-1"
+        v-model="form.selected"
+        :options="['Admin','User']"
+        :aria-describedby="ariaDescribedby"
+        name="radio-options"
+      ></b-form-radio-group>
       </b-form-group>
       <b-button type="submit" variant="primary">Submit</b-button>
     </b-form>
@@ -82,16 +70,21 @@
 </div>
 </template>
 <script>
-import { deleteUser, signUpRequest } from '../graphQl/mutation'
-import { userList } from '../graphQl/query'
+import { deleteUser, signUpRequest } from '../graphQl/mutation';
+import { userList } from '../graphQl/query';
+import toastMixin from '../mixin/toastMixin';
+import navbarComponent from './navbarComponent.vue';
 export default {
   name: 'userdashboard',
+  mixins: [toastMixin],
+  components:{navbarComponent},
   data(){
       return{
           show:false,
           form:{
               fullName:"",
-              email:''
+              email:'',
+              selected:"User"
           },
             fields: [
           'Index',
@@ -116,7 +109,6 @@ export default {
             query: userList,
             client:'localServer'
           }).then((result) => {
-              console.log('userlist',result)
               this.items = result.data.users;
           }).catch((error) => {
             alert(error)
@@ -129,16 +121,17 @@ export default {
             client:'localServer',
             variables: {
               email:this.form.email,
-              password:"Passowrd@123",
-              rePassword:"Passowrd@123",
+              password:"Password@123",
+              rePassword:"Password@123",
               fullName:this.form.fullName,
-              role:'USER'
+              role: this.form.selected == 'User'?'USER':'USER_MANAGER'
             }
           }).then((result) => {
-             console.log('useradded',result);
             this.$bvModal.hide('bv-modal-example')
-             this.show=false;
+            this.show = false;
              this.items.push(result.data.signup.user);
+             this.onReset();
+             alert("User Added Successfully");
           }).catch((error) => {
             alert(error)
           })
@@ -153,9 +146,20 @@ export default {
           }).then((result) => {
             var removeIndex = this.items.map(item => item.id).indexOf(result.data.deleteUser.id);
             ~removeIndex && this.items.splice(removeIndex, 1);
+            alert("User Deleted Successfully")
           }).catch((error) => {
             alert(error)
           })
+      },
+      onReset() {
+        // Reset our form values
+        this.form.email = ''
+        this.form.fullName = ''
+        this.form.selected = 'User'
+        // Trick to reset/clear native browser form validation state
+        this.$nextTick(() => {
+          this.show = true
+        })
       }
       
   }

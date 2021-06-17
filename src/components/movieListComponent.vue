@@ -1,28 +1,7 @@
 <template>
 <div>
-  <div>
-  <b-navbar toggleable="lg" type="dark" variant="info">
-    <b-container>
-    <b-navbar-brand href="#">Castle Branch</b-navbar-brand>
-
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-    <b-collapse id="nav-collapse" is-nav style="flexGrow: 0;">
-      
-
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
-       
-
-        <b-nav-item-dropdown :text="this.$store.state.users.user" right>
-          <b-dropdown-item href="#" @click="userPage()">User Dashboard</b-dropdown-item>
-          <b-dropdown-item href="#" @click="logout()"><b-icon icon="power" aria-hidden="true"></b-icon>LogOut</b-dropdown-item>
-          
-        </b-nav-item-dropdown>
-      </b-navbar-nav>
-    </b-collapse>
-    </b-container>
-  </b-navbar>
+<div>
+<navbarComponent></navbarComponent>
 </div>
 <h1 style="padding:20px; fontSize: 30px;color: #D63384;">Movie List</h1>
 <b-container>
@@ -71,10 +50,13 @@
 <script>
 import gql from 'graphql-tag';
 import movieDetailComponent from './movieDetailComponent.vue';
-import { mapActions } from 'vuex'
+import navbarComponent from './navbarComponent.vue';
+import { mapActions } from 'vuex';
+import toastMixin from '../mixin/toastMixin';
 export default {
   name: 'movieLists',
-  components:{movieDetailComponent},
+  mixins: [toastMixin],
+  components:{movieDetailComponent,navbarComponent},
   data(){
       return{
           movies:[],
@@ -82,34 +64,6 @@ export default {
           isShow:false,
       }
   },
-  // apollo:{
-  //   movies:{
-  //     query:  gql`query {
-  //   movies {
-  //     search(term: "r") {
-  //       edges {
-  //         node {
-  //           releaseDate
-  //           title
-  //           genres {
-  //             name
-  //           }
-  //           images {
-  //             posters {
-  //               image(size: Original)
-  //             }
-  //           }
-  //           id
-  //           overview
-  //           tagline
-  //           homepage
-  //         }
-  //       }
-  //     }
-  //   }
-  // }`
-  //   }
-  // },
   mounted(){
   this.getMovieList("r");
   },
@@ -119,14 +73,6 @@ computed:{
   return this.movies !== undefined  ? this.movies:[];
 
   } 
-},
-created(){
-if(this.$store.state.users.user.length==0 && localStorage.getItem('user').length == 0){
-  this.logout();
-}else if(this.$store.state.users.user.length==0 && localStorage.getItem('user').length>0){
-  let email = localStorage.getItem('user')
-  this.localStorageUser({email});
-}
 },
   methods:{
     ...mapActions('users', ['logout','localStorageUser']),
@@ -163,9 +109,6 @@ if(this.$store.state.users.user.length==0 && localStorage.getItem('user').length
         }`,variables: {term: serachItem} ,client:'movieServer'}).then((response) => {
           self.movies =  response.data.movies.search.edges;
       });
-    },
-    userPage(){
-      this.$router.push('/user');
     }
   }
 }

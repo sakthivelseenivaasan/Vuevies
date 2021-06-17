@@ -16,8 +16,8 @@ Vue.use(Router);
 export const router = new Router({
   mode: 'history',
   routes: [
-    { path: "/login", component: loginComponent },
-    { path: "/signup", component: signupComponent },
+    { path: "/login", component: loginComponent ,name: "login"},
+    { path: "/signup", component: signupComponent ,name: "signUp"},
     { path: "/movie", component: movieListComponent, name: "movie" },
     { path: "/user", component: userDashboardComponent, name: "userDashboard" },
     { path: '*', redirect: '/login' }

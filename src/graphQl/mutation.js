@@ -9,12 +9,13 @@ export const loginRequest = gql`
         user{
             fullName
             role
+            email
         }
         }
     }  
   `
 export const signUpRequest = gql`
-    mutation signup($email:String!,$password:String!,$rePassword:String!,$fullName:String!){
+    mutation signup($email:String!,$password:String!,$rePassword:String!,$fullName:String!,$role:String!){
         signup(signupReq:{email:$email,password:$password,rePassword:$rePassword,fullName:$fullName,,role:$role}){
         success
         user{
