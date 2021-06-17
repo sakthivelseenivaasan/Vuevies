@@ -14,7 +14,7 @@
        
 
         <b-nav-item-dropdown :text="this.$store.state.users.userData.fullName" right>
-          <b-dropdown-item href="#" v-if="$store.state.users.userData.role=='USER_MANAGER' && $route.name == 'movie'"  @click="$router.push('/user')">User Dashboard</b-dropdown-item>
+          <b-dropdown-item href="#" v-if="$store.state.users.userData.role=='USER_MANAGER' && $route.name == 'movie'"  @click="$router.push('/user')"><b-icon icon="person" aria-hidden="true"></b-icon>User Dashboard</b-dropdown-item>
           <b-dropdown-item href="#" v-if="$route.name == 'userDashboard'" @click="$router.push('/movie')">Movie Dashboard</b-dropdown-item>
           <b-dropdown-item href="#" @click="logout()"><b-icon icon="power" aria-hidden="true"></b-icon>LogOut</b-dropdown-item>
           

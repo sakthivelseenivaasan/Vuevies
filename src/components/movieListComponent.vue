@@ -3,8 +3,9 @@
 <div>
 <navbarComponent></navbarComponent>
 </div>
-<h1 style="padding:20px; fontSize: 30px;color: #D63384;">Movie List</h1>
 <b-container>
+<h1 class="contentPageH1">Movie List</h1>
+<hr/>
   <b-card-group columns>
   <b-row align-h="start" v-if="movies.length>0">
   <b-col cols="6" lg="3" sm="6" md="3" class="mb-5 cur-pointer"  v-for="data in filter_movie_data" v-bind:key="data.node.id">

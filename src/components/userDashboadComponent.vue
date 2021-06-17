@@ -1,9 +1,40 @@
 <template>
 <div>
 <navbarComponent></navbarComponent>
-<h1 style="padding:20px; fontSize: 30px;color: #D63384;">User List</h1>
-<div  @click="showUserForm()"><b-avatar variant="danger" icon="person-plus-fill" class="mr-3"></b-avatar></div>
-<b-table small :fields="fields" :items="items" responsive="sm">
+<b-container>
+<h1 class="contentPageH1">User List</h1>
+<hr/>
+  <b-row align-h="between">
+    <b-col lg="4" class="my-1">
+        <b-form-group
+          label="Filter"
+          label-for="filter-input"
+          label-cols-sm="3"
+          label-align-sm="right"
+          label-size="sm"
+          class="mb-0"
+          style="text-align: left; font-weight: 600"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              id="filter-input"
+              v-model="filter"
+              type="search"
+              placeholder="Type to Search"
+            ></b-form-input>
+
+            <b-input-group-append>
+              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+      <b-col lg="4" class="my-1 flex justify-content-end align-item-center">
+      <b-button class="flex" variant="success" @click="showUserForm()"><b-icon icon="person-plus"></b-icon> Add</b-button>
+      </b-col>
+  </b-row>
+<b-table small :fields="fields" :items="items" responsive="sm" @filtered="onFiltered">
+
       <!-- A virtual column -->
       <template #cell(index)="data">
         {{ data.index + 1 }}
@@ -23,6 +54,7 @@
         <i>{{ data.value }}</i>
       </template>
     </b-table>
+</b-container>
 <b-modal id="bv-modal-example" hide-footer>
     <template #modal-title>
       <code>Add User</code>
@@ -89,7 +121,7 @@ export default {
             fields: [
           'Index',
           { key: 'id', label: 'User Id' },
-          { key: 'fullName', label: 'Full Name' },
+          { key: 'fullName', label: 'Full Name', sortable: true, sortDirection: 'desc' },
           { key: 'email', label: 'User Email' },
           'Action',
         ],
@@ -160,8 +192,12 @@ export default {
         this.$nextTick(() => {
           this.show = true
         })
+      },
+      onFiltered(filteredItems) {
+        // Trigger pagination to update the number of buttons/pages due to filtering
+        this.totalRows = filteredItems.length
+        this.currentPage = 1
       }
-      
   }
 
 }
