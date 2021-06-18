@@ -4,18 +4,10 @@
 <b-container>
 <h1 class="contentPageH1">User List</h1>
 <hr/>
-  <b-row align-h="between">
-    <b-col lg="4" class="my-1">
-        <b-form-group
-          label="Filter"
-          label-for="filter-input"
-          label-cols-sm="3"
-          label-align-sm="right"
-          label-size="sm"
-          class="mb-0"
-          style="text-align: left; font-weight: 600"
-        >
-          <b-input-group size="sm">
+  <b-row align-h="between" style="margin: 20px 0px">
+    <b-col lg="3" class="my-1">
+        <b-form-group style="text-align: left; font-weight: 600; display: flex;">
+          <b-input-group size="sm" style="display: flex;">
             <b-form-input
               id="filter-input"
               v-model="filter"
@@ -24,7 +16,7 @@
             ></b-form-input>
 
             <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+              <b-button :disabled="filter" ><b-icon icon="search"></b-icon></b-button>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -33,20 +25,13 @@
       <b-button class="flex" variant="success" @click="showUserForm()"><b-icon icon="person-plus"></b-icon> Add</b-button>
       </b-col>
   </b-row>
-<b-table small :fields="fields" :items="items" responsive="sm" @filtered="onFiltered">
-
-      <!-- A virtual column -->
-      <template #cell(index)="data">
-        {{ data.index + 1 }}
-      </template>
+<b-table small striped :fields="fields" :items="items" :filter="filter" responsive="sm" @filtered="onFiltered" >
 
       <!-- A custom formatted column -->
-      <template #cell(fullName)="data">
-        <b class="text-info"><b-avatar></b-avatar>{{ data.item.fullName }}</b>
-      </template>
-      <!-- A custom formatted column -->
-      <template #cell(Action)="data">
-        <b-icon icon="trash-fill" variant="danger" @click="deleteuser(data.item.id)" aria-hidden="true">{{data.item.fullName}}</b-icon>
+      <template #cell(Action)="data" style="display: flex">
+        <div style="font-size: 2rem; display: flex; margin: 5px; float: left"><b-icon icon="tools" class="border border-info rounded p-2" variant="info" @click="deleteuser(data.item.id)" title="Edit">{{data.item.fullName}}</b-icon></div>
+        <div style="font-size: 2rem;display: flex;margin: 5px;"><b-icon icon="trash-fill" class="border border-danger rounded p-2" variant="danger" @click="deleteuser(data.item.id)" title="Delete">{{data.item.fullName}}</b-icon></div>
+
       </template>
 
       <!-- Optional default data cell scoped slot -->
@@ -119,13 +104,14 @@ export default {
               selected:"User"
           },
             fields: [
-          'Index',
-          { key: 'id', label: 'User Id' },
-          { key: 'fullName', label: 'Full Name', sortable: true, sortDirection: 'desc' },
+          { key: 'fullName', label: 'Full Name', sortable: true,class: 'text-center'},
           { key: 'email', label: 'User Email' },
           'Action',
         ],
-        items: []
+        items: [],
+        filter: null,
+        sortBy: '',
+        sortDesc: false,  
       }
   },
   created(){

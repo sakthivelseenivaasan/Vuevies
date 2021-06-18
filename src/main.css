@@ -65,12 +65,23 @@ ul.dropdown-menu.dropdown-menu-right.show li a:hover{
     box-shadow: 0 2px 5px 0 rgb(55 161 255 / 26%), 0 4px 12px 0 rgb(121 155 254 / 25%);
 }
 .hoverSale{
+    -webkit-transition:0.5s linear;
+    -moz-transition:0.5s linear;
+    -o-transition:0.5s linear;
+    -ms-transition:0.5s linear;
     transition: 0.5s linear;
 }
 .hoverSale:hover{
     transform: scale(1.15);
+    -webkit-transition:0.5s linear;
+    -moz-transition:0.5s linear;
+    -o-transition:0.5s linear;
+    -ms-transition:0.5s linear;
     transition: 0.5s linear;
 }
 .listImgDiv{
     overflow: hidden;
+}
+.sr-only{
+    display: none;
 }
