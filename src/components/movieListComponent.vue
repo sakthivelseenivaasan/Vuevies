@@ -4,22 +4,26 @@
 <navbarComponent></navbarComponent>
 </div>
 <b-container>
-<h1 class="contentPageH1">Movie List</h1>
+<h1 class="contentPageH1">Movie List <span style="float:right; cursor: pointer;"><b-icon :icon="viewMode ? 'list' : 'grid'" @click="clickOnGrid()"></b-icon></span></h1>
 <hr/>
-  <b-card-group columns>
+  <b-card-group columns class="js-scroll fade-in scroll-element">
+    <div :class="viewMode ? 'grid' : 'list'">
   <b-row align-h="start" v-if="movies.length>0">
-  <b-col cols="6" lg="3" sm="6" md="3" class="mb-5 cur-pointer"  v-for="data in filter_movie_data" v-bind:key="data.node.id">
+    
+  <b-col cols="6" :lg="viewMode ? '3' : '12'" sm="6" :md="viewMode ? '3' : '12'" class="mb-5 cur-pointer"  v-for="data in filter_movie_data" v-bind:key="data.node.id">
     <b-card no-body @click="showMovieDetail(data.node)" class="box-shadow">
     <div class="listImgDiv"><b-card-img :src="data.node.images.posters[0].image" class="hoverSale" alt="Image" bottom></b-card-img></div>
     <b-card-body>
-      <b-card-text>
+      <b-card-text class="cardText">
         <p style="color:#999797; fontSize: 12px; textAlign:left">Year: {{data.node.releaseDate | DateFormat}}</p>
         <h3 style="textAlign:left; fontSize: 20px">{{data.node.title}}{{data.show}}</h3>
       </b-card-text>
     </b-card-body>
     </b-card>
   </b-col>
+    
   </b-row>
+  </div>
   <b-row align-h="start" v-if="movies.length==0">
     
      <b-col col lg="3" class="mb-5">
@@ -63,6 +67,7 @@ export default {
           movies:[],
           moviesDetail:{},
           isShow:false,
+          viewMode: true
       }
   },
   mounted(){
@@ -110,6 +115,10 @@ computed:{
         }`,variables: {term: serachItem} ,client:'movieServer'}).then((response) => {
           self.movies =  response.data.movies.search.edges;
       });
+    },
+    clickOnGrid(){
+      this.viewMode = !this.viewMode;
+      console.log(!this.viewMode);
     }
   }
 }
